@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h2>Lista de Libros</h2>
+    <a href="{% url 'add_book' %}" class="btn btn-primary" > Agregar Libro</a>    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>Title</th>
+                <th>Release Date</th>
+                <th>ISBN</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+               
+                    <td>{{book.title}}</td>
+                    <td>{{book.release_date}}</td>
+                    <td>{{book.isbn}}</td>
+                    <td>{{book.author}}</td>
+                    <td>
+                        <a href="{% url 'book_detail' book.id %}">Details</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% comment %} <ul>
+        {% for book in books %}
+        <li>{{book.id}} {{book.title}} {{book.release_date}}</li>
+        {% endfor %}
+
+    </ul> {% endcomment %}
+{% endblock %}

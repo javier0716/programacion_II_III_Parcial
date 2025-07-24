@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<h1> Listado de Autores</h1>
+<a href="{% url 'add_author' %}" class="btn btn-primary" > Agregar Autor</a>     
+<table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Fecha de Muerte</th>
+        <th scope="col">Pais</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for author in authors %}
+            <tr>
+            <td>{{author.name}}</td>   
+            <td>{{author.email}}</td> 
+            <td>{{author.born_date}}</td> 
+            <td>{{author.died_date}}</td> 
+            <td>{{author.country}}</td> 
+            </tr>             
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}

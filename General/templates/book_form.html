@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <h1>Agregar Libro</h1>`
+<form method="post">
+        {% csrf_token %}
+    <div class="mb-3">
+        {{form.title.label_tag}}
+        {{form.title}}
+        <div class="form-text">{{form.title.help_text}}</div>
+        {% if form.title.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.title.errors}}
+            </div>
+        {% endif %}                
+    </div>
+    <div class="mb-3">
+        {{form.release_date.label_tag}}
+        {{form.release_date}}
+        <div class="form-text">{{form.release_date.help_text}}</div>
+        {% if form.release_date.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.release_date.errors}}
+            </div>
+        {% endif %}                
+    </div>
+    <div class="mb-3">
+        {{form.isbn.label_tag}}
+        {{form.isbn}}
+        <div class="form-text">{{form.isbn.help_text}}</div>
+        {% if form.isbn.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.isbn.errors}}
+            </div>
+        {% endif %}                
+    </div>             
+    <div class="mb-3">
+        {{form.author.label_tag}}
+        {{form.author}}
+        <div class="form-text">{{form.author.help_text}}</div>
+        {% if form.author.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.author.errors}}
+            </div>
+        {% endif %}                
+    </div>
+        <button class="btn btn-success" type="submit">Guardar</button>
+
+        
+    </form>
+    
+{% endblock body %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <h1>Agregar Autor</h1>`
+<form method="post">
+        {% csrf_token %}
+    <div class="mb-3">
+        {{form.name.label_tag}}
+        {{form.name}}
+        <div class="form-text">{{form.name.help_text}}</div>
+        {% if form.name.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.name.errors}}
+            </div>
+        {% endif %}                
+    </div>
+    <div class="mb-3">
+        {{form.email.label_tag}}
+        {{form.email}}
+        <div class="form-text">{{form.email.help_text}}</div>
+        {% if form.email.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.email.errors}}
+            </div>
+        {% endif %}                
+    </div>
+    <div class="mb-3">
+        {{form.born_date.label_tag}}
+        {{form.born_date}}
+        <div class="form-text">{{form.born_date.help_text}}</div>
+        {% if form.born_date.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.born_date.errors}}
+            </div>
+        {% endif %}                
+    </div>
+    <div class="mb-3">
+        {{form.died_date.label_tag}}
+        {{form.died_date}}
+        <div class="form-text">{{form.died_date.help_text}}</div>
+        {% if form.died_date.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.died_date.errors}}
+        </div>
+        {% endif %}                
+    </div>
+    <div class="mb-3">
+        {{form.country.label_tag}}
+        {{form.country}}
+        <div class="form-text">{{form.country.help_text}}</div>
+        {% if form.country.errors %}
+            <div class="alert alert-danger" role="alert">
+             {{form.country.errors}}
+            </div>
+        {% endif %}                
+    </div>
+        <button class="btn btn-success" type="submit">Guardar</button>
+
+        
+    </form>
+    
+{% endblock body %}
