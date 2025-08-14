@@ -10,7 +10,7 @@ from .forms import *
 
 class ListBooks(views.View):
     def get(self, request:HttpRequest):
-        books = Book.objects.all()
+        books = Book.objects.filter(is_deleted=False)
         return render(request, 'book_list.html', {"books": books})
 
 
@@ -43,6 +43,18 @@ class BookDetail(views.View):
             return render(request, '404.html', status=404)
 
         return render(request, 'book_detail.html', {'book': book})
+
+class BookDelete(views.View):
+    def delete(self, request:HttpRequest, book_id:UUID):
+       book = Book.objects.filter(id=book_id).first()
+
+       if book is None:
+            return render(request, '404.html', status=404) 
+       
+       book.is_deleted = True
+       book.save()
+
+       return HttpResponseRedirect(reverse('list_all_books'))
     
 class ListAuthors(views.View):
     def get(self, request:HttpRequest):
@@ -70,3 +82,16 @@ class AuthorAdd(views.View):
         author.save()
         
         return HttpResponseRedirect(reverse('list_authors'))
+    
+class AuthorDelete(views.View):
+    def post(self, request:HttpRequest, author_id:UUID):
+       author = Author.objects.filter(id=author_id).first()
+
+       if author is None:
+            return render(request, '404.html', status=404) 
+       
+       author.is_deleted = True
+       author.save()
+
+       return HttpResponseRedirect(reverse('list_authors'))
+    

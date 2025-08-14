@@ -12,6 +12,8 @@
         <th scope="col">Fecha de Nacimiento</th>
         <th scope="col">Fecha de Muerte</th>
         <th scope="col">Pais</th>
+        <th scope="col">Actions</th>
+
     </tr>
     </thead>
     <tbody>
@@ -20,16 +22,35 @@
             <td>{{author.name}}</td>   
             <td>{{author.email}}</td> 
             <td>{{author.born_date}}</td> 
+
             <td>
-                {% if author.died_date %}</td> 
+                {% if author.died_date %} 
                 {{author.died_date}}
                 {%else %}
                     N/A
                 {% endif%}
-            <td>{{author.country}}</td> 
+            </td>
+            <td>{{author.country}}</td>
+
+            <td>
+                <button class="delete-btn btn btn-danger" data-author-id="{{author.id}}" >Eliminar</button>
+            </td>
             </tr>             
         {% endfor %}
     </tbody>
 </table>
-
-{% endblock body %}
+<script type="module">
+    const delBtns = document.querySelectorAll(".delete-btn")
+    delBtns.forEach(delBtn =>{
+        delBtn.addEventListener("click",async e=> {
+            let authorId= delBtn.dataset.authorId 
+            const resp = await fetch(`http://localhost:8000/author/${authorId}/delete`,{
+                method: "DELETE"
+            })
+            console.log(await resp.text())
+        })
+        
+    })
+    console.log(delBtns)
+</script>
+{% endblock body %} 

@@ -10,7 +10,7 @@ class Author(models.Model):
     born_date = models.DateField(blank=False)
     died_date = models.DateField(blank=True, null=True)
     country = models.CharField(max_length=100, blank=False)
-
+    is_deleted = models.BooleanField(default=False)
     def __str__(self) -> str:
         return self.name
 
@@ -20,6 +20,7 @@ class Book(models.Model):
     release_date = models.DateField(blank=False)
     isbn = models.CharField(max_length=50, unique=True, blank=False)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.title
