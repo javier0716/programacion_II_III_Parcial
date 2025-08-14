@@ -30,7 +30,7 @@ class BookAdd(views.View):
         book.release_date = form.cleaned_data['release_date']
         book.isbn= form.cleaned_data['isbn']
         book.author= form.cleaned_data['author'] 
-        book.save()
+        book.save()             
         
         return HttpResponseRedirect(reverse('list_all_books'))
 
